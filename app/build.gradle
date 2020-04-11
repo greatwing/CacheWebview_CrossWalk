@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.github.greatwing"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'armeabi-v7a','x86'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.+'
+    implementation(name: 'xwalk_core_library', ext: 'aar')
+//    implementation(name: 'crosswalk-23.53.589.4', ext: 'aar')
+    implementation 'ren.yale.android:cachewebviewlib:2.1.8'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+}
